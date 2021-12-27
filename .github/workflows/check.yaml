@@ -1,0 +1,20 @@
+name: cargo check
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Project
+      uses: actions/checkout@v2
+
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+
+    - name: Check a local package and all of its dependencies for errors
+      run: |
+        cargo check

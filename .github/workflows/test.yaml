@@ -1,0 +1,20 @@
+name: cargo test
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Project
+      uses: actions/checkout@v2
+
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+
+    - name: Execute all unit and integration tests and build examples of a local package
+      run: |
+        cargo test

@@ -1,0 +1,20 @@
+name: cargo fmt
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Project
+      uses: actions/checkout@v2
+
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+
+    - name: Formats all bin and lib files of the current crate using rustfmt
+      run: |
+        cargo fmt --all -- --check
