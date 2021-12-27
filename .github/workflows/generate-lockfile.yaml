@@ -1,19 +1,20 @@
 name: cargo generate-lockfile
+
 on:
   push:
-    branches:
-      - $default-branch
+    branches: [ main ]
   pull_request:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  generate:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Project
       uses: actions/checkout@v2
-
-    - name: Install Rust
-      uses: actions-rs/toolchain@v1
 
     - name: Generate the lockfile for a package
       run: |
