@@ -1,9 +1,13 @@
 name: cargo build
+
 on:
   push:
-    branches:
-      - $default-branch
+    branches: [ main ]
   pull_request:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
 
 jobs:
   build:
@@ -11,9 +15,6 @@ jobs:
     steps:
     - name: Checkout Project
       uses: actions/checkout@v2
-
-    - name: Install Rust
-      uses: actions-rs/toolchain@v1
 
     - name: Compile a local package and all of its dependencies
       run: |
